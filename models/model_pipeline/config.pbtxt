@@ -1,4 +1,4 @@
-name: "model_popeline"
+name: "model_pipeline"
 platform: "ensemble"
 input [
   {

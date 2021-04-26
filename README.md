@@ -33,3 +33,9 @@ The classification model is efficient-net.keras, input-size: 260, return 3 class
 ### post classification
 
 The post classification model. In this demo, only use one classification mode, so not implementation this. 
+
+### result
+
+![](image1.png)
+
+![](image2.png)
