@@ -1,0 +1,35 @@
+name: "post_detection"
+backend: "python"
+
+input[
+ {  # 原始图片, 此demo中假定原始图片就是输入到检测模型的图片，实际可能更大，可以同时传原图和resize后的图或者再写一个pre_detection model, 对图片进行resize
+    name: "INPUT0"
+    data_type: TYPE_FP32
+    dims: [3, 640, 640]
+ }
+]
+
+input [
+  { # 检测网网络的输出
+    name: "INPUT1"
+    data_type: TYPE_FP32
+    dims: [1, 25200, 7]
+  }
+]
+
+output [
+  { # 对目标类别crop后用于输入到分类模型
+    name: "OUTPUT0"
+    data_type: TYPE_FP32
+    dims: [-1, 260, 260, 3]
+  }
+]
+
+output [
+  { # 输出的Bboxes, [class_id, score, x_min, y_min, x_max, y_max]
+    name: "OUTPUT1"
+    data_type: TYPE_FP32
+    dims: [-1, 6]
+  }
+]
+instance_group [{ kind: KIND_CPU }]
